@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
-import GameContainer from './containers/GameContainer'
-import PlayerSelection from './components/PlayerSelection'
+import GameContainer from './components/GameContainer'
+import MainMenu from './components/MainMenu'
+import Instructions from './components/Instructions'
 import {connect} from 'react-redux'
 
 class App extends Component {
@@ -10,18 +11,29 @@ class App extends Component {
     navigator.mediaDevices.getUserMedia({audio: true})
   }
 
+  displayWhichComponent(){
+    switch(this.props.displayedComponent) {
+      case 'START_GAME':
+        return <GameContainer/>
+      case 'INSTRUCTIONS':
+        return <Instructions/>
+      default:
+        return <MainMenu/>
+    }
+  }
+
   render() {
     return (
-      <React.Fragment>
-        {this.props.startGame ? <GameContainer /> : <PlayerSelection />}
-      </React.Fragment>
+      <Fragment>
+        {this.displayWhichComponent()}
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = (store) => {
   return {
-    startGame: store.startGame
+    displayedComponent: store.displayedComponent
   }
 }
 

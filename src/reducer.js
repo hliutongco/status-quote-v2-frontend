@@ -1,5 +1,5 @@
 const initialStore = {
-  startGame: false,
+  displayedComponent: null,
   video: {},
   player1: 0,
   player2: 0
@@ -7,8 +7,8 @@ const initialStore = {
 
 export const reducer = (store = initialStore, action) => {
   switch(action.type){
-    case 'PRESS_START':
-      return {...store, startGame: action.payload}
+    case 'CHANGE_DISPLAY':
+      return {...store, displayedComponent: action.payload}
     case 'SEND_VIDEO':
       return {...store, video: action.payload}
     case 'UPDATE_PLAYER1':

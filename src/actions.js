@@ -1,6 +1,8 @@
-export const pressStartGame =  {
-    type: 'PRESS_START',
-    payload: true
+export const changeDisplay = (display) => {
+  return {
+      type: 'CHANGE_DISPLAY',
+      payload: display
+    }
   }
 
 export const sendVideo = (video) => {
