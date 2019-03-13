@@ -4,6 +4,16 @@ import GameContainer from './components/GameContainer'
 import MainMenu from './components/MainMenu'
 import Instructions from './components/Instructions'
 import {connect} from 'react-redux'
+import SpeechRecognition from 'react-speech-recognition'
+import PropTypes from 'prop-types'
+
+const propTypes = {
+  // Props injected by SpeechRecognition
+  transcript: PropTypes.string,
+  startListening: PropTypes.func,
+  stopListening: PropTypes.func,
+  resetTranscript: PropTypes.func
+}
 
 class App extends Component {
 
@@ -18,7 +28,10 @@ class App extends Component {
       case 'INSTRUCTIONS':
         return <Instructions/>
       default:
-        return <MainMenu/>
+        return <MainMenu transcript={this.props.transcript}
+        startListening={this.props.startListening}
+        resetTranscript={this.props.resetTranscript}
+        stopListening={this.props.stopListening}/>
     }
   }
 
@@ -31,10 +44,14 @@ class App extends Component {
   }
 }
 
+const options = {
+  autoStart: false
+}
+
 const mapStateToProps = (store) => {
   return {
     displayedComponent: store.displayedComponent
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(SpeechRecognition(options)(App));

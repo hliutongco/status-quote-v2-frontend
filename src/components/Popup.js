@@ -1,16 +1,7 @@
 import React from 'react'
-import SpeechRecognition from 'react-speech-recognition'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {updatePlayer1, updatePlayer2} from '../actions'
 
-const propTypes = {
-  // Props injected by SpeechRecognition
-  transcript: PropTypes.string,
-  startListening: PropTypes.func,
-  stopListening: PropTypes.func,
-  resetTranscript: PropTypes.func
-}
 
 class Popup extends React.Component {
   state = {time: 5}
@@ -52,10 +43,6 @@ class Popup extends React.Component {
   }
 }
 
-const options = {
-  autoStart: false
-}
-
 const mapStateToProps = (store) => {
   return {
     video: store.video
@@ -70,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpeechRecognition(options)(Popup));
+export default connect(mapStateToProps, mapDispatchToProps)(Popup);
