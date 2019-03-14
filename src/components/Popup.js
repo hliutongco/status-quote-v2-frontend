@@ -1,41 +1,48 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updatePlayer1, updatePlayer2} from '../actions'
+import {updatePlayer1, updatePlayer2, changeGameStatus, changeVideoStatus} from '../actions'
 
 
 class Popup extends React.Component {
-  state = {time: 5}
+  state = {
+    time: 1
+  }
 
   componentDidMount() {
     this.interval = setInterval(() => {
-        if (this.state.time === 0){
-          this.props.pause();
-        } else {
-        this.setState({time: this.state.time - 1})}
+        this.setState({time: this.state.time - 1})
       }, 1000)
     this.props.resetTranscript()
     this.props.startListening()
   }
 
+  componentDidUpdate(){
+    if(!this.state.time){
+      this.props.handlePause(null)
+    }
+  }
+
   componentWillUnmount() {
     this.props.stopListening()
+    this.props.changeVideoStatus(true)
 
-    if(this.props.transcript === this.props.video.quote){
-      if(this.props.video.title === 'A League of Their Own' || this.props.video.title === 'A Few Good Men'){
-        this.props.updatePlayer1()
-      }
-      else if (this.props.video.title === 'Back to the Future 2' || this.props.video.title === 'Star Wars: The Empire Strikes Back') {
-        this.props.updatePlayer2()
-      }
-    }
+    // if(this.props.transcript === this.props.video.quote){
+    //   if(this.props.video.title === 'A League of Their Own' || this.props.video.title === 'A Few Good Men'){
+    //     this.props.updatePlayer1()
+    //   }
+    //   else if (this.props.video.title === 'Back to the Future 2' || this.props.video.title === 'Star Wars: The Empire Strikes Back') {
+    //     this.props.updatePlayer2()
+    //   }
+    // }
+
     clearInterval(this.interval);
   }
 
   render () {
     return (
-      <div className='popup' style={{position: 'absolute'}}>
+      <div className='popup'>
         <h1>Guess the line</h1>
-        <h2>time left: {this.state.time}</h2>
+        <h2>Time left: {this.state.time}</h2>
         <button className='start-btn' onClick={this.props.resetTranscript}>Re-Record</button>
         <h3>{this.props.transcript}</h3>
       </div>
@@ -43,17 +50,18 @@ class Popup extends React.Component {
   }
 }
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state) => {
   return {
-    video: store.video
+    video: state.video
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePlayer1: () => {
-      dispatch(updatePlayer1)},
-    updatePlayer2: () => dispatch(updatePlayer2)
+    // updatePlayer1: () => dispatch(updatePlayer1),
+    // updatePlayer2: () => dispatch(updatePlayer2),
+    handlePause: (status) => dispatch(changeGameStatus(status)),
+    changeVideoStatus: (boolean) => dispatch(changeVideoStatus(boolean))
   }
 }
 

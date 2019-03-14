@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-import Popup from './Popup';
 import {connect} from 'react-redux'
-import {sendVideo} from '../actions.js'
-import EndGame from './EndGame'
-import clips from '../clips'
+import {changeGameStatus, changeVideoStatus, changeNextVideo} from '../actions.js'
 
 class VideoPlayer extends Component {
 
@@ -11,9 +8,12 @@ class VideoPlayer extends Component {
     index: 0,
     pause: false,
     firstPause: false,
-    end: false,
     hintClicked: false,
     clickedVideo: null
+  }
+
+  componentDidMount(){
+    this.video.play()
   }
 
   // next = () => {
@@ -29,13 +29,13 @@ class VideoPlayer extends Component {
   //   }
   // }
   //
-  // quoteTime = () => {
-  //   let vid = document.getElementById('vid')
-  //   if(clips[this.state.index].time <= vid.currentTime && !this.state.firstPause){
-  //     vid.pause();
-  //     this.setState({firstPause: true, pause: true})
-  //   }
-  // }
+  quoteTime = () => {
+    console.log(this.props.clip.time);
+    // console.log(this.video.currentTime);
+    if(this.props.clip.time = this.video.currentTime){
+      // this.video.pause();
+    }
+  }
   //
   // unPause = () => {
   //   let vid = document.getElementById('vid')
@@ -54,8 +54,6 @@ class VideoPlayer extends Component {
   //     hintClicked: !this.state.hintClicked
   //   })
   // }
-
-  render() {
 
     // if (this.state.end){
     //   return <EndGame/>
@@ -77,17 +75,41 @@ class VideoPlayer extends Component {
     //
     // {this.getPopup()}
     // {this.state.pause && <Popup pause={this.unPause}/>}
+  componentDidUpdate(){
+    if(this.props.continueVideo){
+      this.props.changeVideoStatus(false)
+      this.video.play()
+    }
+  }
+
+  render() {
     return (
       <div className="Player">
+        <video onPause={() => this.props.handlePause("PAUSED")}
+        onTimeUpdate={this.quoteTime}
+        onEnded={() => changeNextVideo(true)}
+        src={this.props.clip.link}
+        ref={(video) => this.video = video}>
+        Sorry, your browser doesn't support embedded videos.
+        </video>
+        {this.props.clip.title}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    sendVideo: (video) => dispatch(sendVideo(video))
+    continueVideo: state.videoStatus
   }
 }
 
-export default connect(null, mapDispatchToProps)(VideoPlayer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handlePause: (display) => dispatch(changeGameStatus(display)),
+    changeVideoStatus: (boolean) => dispatch(changeVideoStatus(boolean)),
+    changeNextVideo: (boolean) => dispatch(changeNextVideo(boolean))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);

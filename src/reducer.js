@@ -1,21 +1,30 @@
-const initialStore = {
+const initialState = {
   displayedComponent: null,
-  video: {},
+  video: null,
   player1: 0,
-  player2: 0
+  player2: 0,
+  gameStatus: null,
+  videoStatus: false,
+  nextVideo: true
 }
 
-export const reducer = (store = initialStore, action) => {
+export const reducer = (state = initialState, action) => {
   switch(action.type){
     case 'CHANGE_DISPLAY':
-      return {...store, displayedComponent: action.payload}
+      return {...state, displayedComponent: action.payload}
+    case 'CHANGE_GAME_STATUS':
+      return {...state, gameStatus: action.payload}
+    case 'CHANGE_VIDEO_STATUS':
+      return {...state, videoStatus: action.payload}
+    case 'CHANGE_NEXT_VIDEO':
+      return {...state, nextVideo: action.payload}
     case 'SEND_VIDEO':
-      return {...store, video: action.payload}
+      return {...state, video: action.payload}
     case 'UPDATE_PLAYER1':
-      return {...store, player1: store.player1 + action.payload}
+      return {...state, player1: state.player1 + action.payload}
     case 'UPDATE_PLAYER2':
-      return {...store, player2: store.player2 + action.payload}
+      return {...state, player2: state.player2 + action.payload}
     default:
-      return store
+      return state
   }
 }

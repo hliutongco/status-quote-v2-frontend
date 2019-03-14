@@ -3,9 +3,9 @@ import './App.css';
 import GameContainer from './components/GameContainer'
 import MainMenu from './components/MainMenu'
 import Instructions from './components/Instructions'
-import {connect} from 'react-redux'
 import SpeechRecognition from 'react-speech-recognition'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
 const propTypes = {
   // Props injected by SpeechRecognition
@@ -24,7 +24,10 @@ class App extends Component {
   displayWhichComponent(){
     switch(this.props.displayedComponent) {
       case 'START_GAME':
-        return <GameContainer/>
+        return <GameContainer transcript={this.props.transcript}
+        startListening={this.props.startListening}
+        resetTranscript={this.props.resetTranscript}
+        stopListening={this.props.stopListening}/>
       case 'INSTRUCTIONS':
         return <Instructions/>
       default:
@@ -38,11 +41,15 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        {this.displayWhichComponent()}
+      <GameContainer transcript={this.props.transcript}
+      startListening={this.props.startListening}
+      resetTranscript={this.props.resetTranscript}
+      stopListening={this.props.stopListening}/>
       </Fragment>
     );
   }
 }
+// {this.displayWhichComponent()}
 
 const options = {
   autoStart: false

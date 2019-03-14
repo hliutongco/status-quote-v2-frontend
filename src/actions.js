@@ -5,6 +5,27 @@ export const changeDisplay = (display) => {
     }
   }
 
+export const changeGameStatus = (status) => {
+  return {
+      type: 'CHANGE_GAME_STATUS',
+      payload: status
+    }
+  }
+
+export const changeVideoStatus = (boolean) => {
+  return {
+      type: 'CHANGE_VIDEO_STATUS',
+      payload: boolean
+    }
+  }
+
+export const changeNextVideo = (boolean) => {
+  return {
+      type: 'CHANGE_NEXT_VIDEO',
+      payload: boolean
+    }
+  }
+
 export const sendVideo = (video) => {
   return {
     type: 'SEND_VIDEO',

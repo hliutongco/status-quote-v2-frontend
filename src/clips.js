@@ -1,4 +1,4 @@
-const clips = [
+export const clips = [
   {
     id: 1,
     title: 'A League of Their Own',

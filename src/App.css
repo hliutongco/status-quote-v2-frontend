@@ -1,6 +1,7 @@
 body {
   font-family: 'Press Start 2P', cursive;
   color: white;
+  background-color: black;
 }
 
 .menu-text {
@@ -27,13 +28,17 @@ h1, h2 {
 }
 
 video {
-  background-color: black;
+  z-index: -1;
+  width: 80vw;
+  height: 50vh;
 }
 
 .popup{
+  z-index: 1;
   margin-top: 10%;
   text-align: center;
   width: 100%;
+  position: fixed;
 }
 
 .player1{
