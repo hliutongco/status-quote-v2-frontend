@@ -13,68 +13,16 @@ class VideoPlayer extends Component {
   }
 
   componentDidMount(){
+    this.timeout = setTimeout(() => this.video.pause(), this.props.clip.time)
     this.video.play()
   }
 
-  // next = () => {
-  //   if (this.state.index + 1 < clips.length) {
-  //     this.setState((prevState) => {
-  //       return {
-  //         index: prevState.index + 1,
-  //         firstPause: false
-  //       }
-  //     })
-  //   } else {
-  //     this.setState({end: true})
-  //   }
-  // }
-  //
-  quoteTime = () => {
-    console.log(this.props.clip.time);
-    // console.log(this.video.currentTime);
-    if(this.props.clip.time = this.video.currentTime){
-      // this.video.pause();
-    }
+  hintyClicked = () => {
+    this.setState({
+      hintClicked: !this.state.hintClicked
+    })
   }
-  //
-  // unPause = () => {
-  //   let vid = document.getElementById('vid')
-  //   this.setState({pause: false})
-  //   vid.play();
-  // }
-  //
-  // getPopup = () => {
-  //   if (this.state.pause){
-  //     return <Popup pause={this.unPause}/>
-  //   }
-  // }
-  //
-  // hintyClicked = (id) => {
-  //   this.setState({
-  //     hintClicked: !this.state.hintClicked
-  //   })
-  // }
 
-    // if (this.state.end){
-    //   return <EndGame/>
-    // }
-
-    // const match = clips.find((obj) => obj.id === id);
-
-    // <video id='vid' onPlay={() => this.props.sendVideo(clips[this.state.index])} onEnded={this.next}
-    // onTimeUpdate={this.quoteTime}
-    //
-    // autoPlay="autoplay"
-    // src={clips[this.state.index].link}
-    // width="300"
-    // height="200">
-    // Sorry, your browser doesn{"'"}t support embedded videos.
-    // </video>
-    // <button onClick={() => this.hintyClicked(clips[this.state.index].id)} className='hint-btn'>Hint</button>
-    // return this.state.hintClicked ? <h1 className='hintmatch'>{match}</h1> : ""
-    //
-    // {this.getPopup()}
-    // {this.state.pause && <Popup pause={this.unPause}/>}
   componentDidUpdate(){
     if(this.props.continueVideo){
       this.props.changeVideoStatus(false)
@@ -85,14 +33,16 @@ class VideoPlayer extends Component {
   render() {
     return (
       <div className="Player">
-        <video onPause={() => this.props.handlePause("PAUSED")}
+        <video onPause={() => this.video.currentTime < Math.floor(this.video.duration) && this.props.handlePause("PAUSED")}
         onTimeUpdate={this.quoteTime}
-        onEnded={() => changeNextVideo(true)}
+        onEnded={() => this.props.changeNextVideo(true)}
         src={this.props.clip.link}
         ref={(video) => this.video = video}>
         Sorry, your browser doesn't support embedded videos.
         </video>
-        {this.props.clip.title}
+        <h2>{this.props.clip.title}</h2>
+        {this.state.hintClicked ? <h1 className='hintmatch'>{this.props.clip.hint}</h1> : ""}
+        <button onClick={this.hintyClicked} className='hint-btn'>Hint</button>
       </div>
     );
   }

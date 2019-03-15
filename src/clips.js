@@ -5,7 +5,7 @@ export const clips = [
     link: 'https://drive.google.com/uc?id=1PpV-1H3CSrs3ewHuOkEvIQLIWVHctWhH',
     quote: 'there\'s no crying in baseball',
     hint: 'no crying',
-    time: 10
+    time: 10000
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const clips = [
     link: 'https://drive.google.com/uc?id=1cE5TpS70IzZAbaM4T6mD7nUVrSW5pkOM',
     quote: 'where we\'re going we don\'t need roads',
     hint: 'don\'t need roads',
-    time: 9
+    time: 9000
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const clips = [
     link: 'https://drive.google.com/uc?id=11_00hlcxRkB_wcgfvJ1rN50noaHN7YIN',
     quote: 'you can\'t handle the truth',
     hint: 'truth',
-    time: 5
+    time: 5000
   },
   {
     id: 4,
@@ -29,6 +29,6 @@ export const clips = [
     link: 'https://drive.google.com/uc?id=1QEBSxyChMLigatKLYerrfj4b-6jFxCoI',
     quote: 'try not do or do not there is no try',
     hint: 'try not',
-    time: 8
+    time: 8000
   }
 ];

@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updatePlayer1, updatePlayer2, changeGameStatus, changeVideoStatus} from '../actions'
+import {changeGameStatus, changeVideoStatus} from '../actions'
 
 
 class Popup extends React.Component {
   state = {
-    time: 1
+    time: 10
   }
 
   componentDidMount() {
@@ -25,16 +25,6 @@ class Popup extends React.Component {
   componentWillUnmount() {
     this.props.stopListening()
     this.props.changeVideoStatus(true)
-
-    // if(this.props.transcript === this.props.video.quote){
-    //   if(this.props.video.title === 'A League of Their Own' || this.props.video.title === 'A Few Good Men'){
-    //     this.props.updatePlayer1()
-    //   }
-    //   else if (this.props.video.title === 'Back to the Future 2' || this.props.video.title === 'Star Wars: The Empire Strikes Back') {
-    //     this.props.updatePlayer2()
-    //   }
-    // }
-
     clearInterval(this.interval);
   }
 
@@ -58,8 +48,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // updatePlayer1: () => dispatch(updatePlayer1),
-    // updatePlayer2: () => dispatch(updatePlayer2),
     handlePause: (status) => dispatch(changeGameStatus(status)),
     changeVideoStatus: (boolean) => dispatch(changeVideoStatus(boolean))
   }

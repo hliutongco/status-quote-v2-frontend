@@ -5,7 +5,7 @@ const initialState = {
   player2: 0,
   gameStatus: null,
   videoStatus: false,
-  nextVideo: true
+  nextVideo: false
 }
 
 export const reducer = (state = initialState, action) => {

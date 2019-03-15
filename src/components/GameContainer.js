@@ -8,8 +8,12 @@ import {connect} from 'react-redux'
 import {changeNextVideo} from '../actions.js'
 
 class GameContainer extends Component {
+  state = {
+    counter: 0,
+    generatedObj: {value: null}
+  }
+
   displayWhichComponent = () => {
-    console.log(this.props.gameStatus);
     switch(this.props.gameStatus){
       case "PAUSED":
         return <Popup transcript={this.props.transcript}
@@ -23,31 +27,38 @@ class GameContainer extends Component {
     }
   }
 
-  videoGenerator = () => {
+  createVideoGenerator = () => {
     const videoPlayers = clips.map((clip) => <VideoPlayer key={clip.id} clip={clip}/>)
 
+    // continue to the next video player in the array
+    // using a generator function
     function* nextVideo(array){
-      let counter = 0;
-      while (counter < array.length) {
-        yield array[counter];
-        counter++;
+      while (this.state.counter < array.length) {
+        this.setState({ counter: this.state.counter + 1 })
+        yield array[this.state.counter]
       }
     }
 
-    // Use a value stored in redux
-     // when to continue to the next value in the array
-     // use a generator function?
-     return nextVideo(videoPlayers)
+    // the generator function loses the context of 'this'
+    // use 'this.nextVideo' to avoid a function assignment warning
+    this.nextVideo = nextVideo.bind(this)
+    return this.nextVideo(videoPlayers)
   }
 
   useGenerator = () => {
-    return this.videoGenerator().next().value
+    // Create the generator function then call .next()
+    // and save the returned object into state
+    this.setState({ generatedObj: this.createVideoGenerator().next() })
+  }
+
+  componentDidMount(){
+    this.useGenerator()
   }
 
   componentDidUpdate(){
     if(this.props.nextVideo){
-      this.useGenerator()
       this.props.changeNextVideo(false)
+      this.useGenerator()
     }
   }
 
@@ -56,7 +67,7 @@ class GameContainer extends Component {
       <Fragment>
         {this.displayWhichComponent()}
         <div id="game-container">
-          {this.useGenerator()}
+          {this.state.generatedObj.value}
         </div>
       </Fragment>
     )
