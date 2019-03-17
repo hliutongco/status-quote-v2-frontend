@@ -41,15 +41,11 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-      <GameContainer transcript={this.props.transcript}
-      startListening={this.props.startListening}
-      resetTranscript={this.props.resetTranscript}
-      stopListening={this.props.stopListening}/>
+        {this.displayWhichComponent()}
       </Fragment>
     );
   }
 }
-// {this.displayWhichComponent()}
 
 const options = {
   autoStart: false

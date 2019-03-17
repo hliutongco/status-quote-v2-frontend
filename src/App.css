@@ -14,17 +14,20 @@ body {
 }
 
 #end-game {
-  background-color: rgba(55,55,55,0.9);
-  width: 50%;
-  margin: auto;
+  text-align: center;
+  width: 100%;
   margin-top: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 50px;
 }
 
-h1, h2 {
-  font-size: 4vw;
+h1 {
+  font-size: 3vw;
+}
+
+h2 {
+  font-size: 2vw;
 }
 
 video {
@@ -41,21 +44,11 @@ video {
   position: fixed;
 }
 
-.player1{
-  margin: 40px;
-  margin-left: 60px;
-  font-size: 25px;
-}
-
-.player2{
-  margin: 40px;
-  margin-right: 60px;
-  font-size: 25px;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.player-container {
+  position: fixed;
+  top: 0; right: 5vw;
+  font-size: 2vw;
+  text-align: center;
 }
 
 .select-box {

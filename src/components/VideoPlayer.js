@@ -1,18 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {changeGameStatus, changeVideoStatus, changeNextVideo} from '../actions.js'
+import {changeGameStatus, changeVideoStatus, changeNextVideo, saveQuote} from '../actions.js'
 
 class VideoPlayer extends Component {
 
   state = {
     index: 0,
-    pause: false,
-    firstPause: false,
     hintClicked: false,
     clickedVideo: null
   }
 
   componentDidMount(){
+    this.props.saveQuote(this.props.clip.quote)
     this.timeout = setTimeout(() => this.video.pause(), this.props.clip.time)
     this.video.play()
   }
@@ -58,7 +57,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handlePause: (display) => dispatch(changeGameStatus(display)),
     changeVideoStatus: (boolean) => dispatch(changeVideoStatus(boolean)),
-    changeNextVideo: (boolean) => dispatch(changeNextVideo(boolean))
+    changeNextVideo: (boolean) => dispatch(changeNextVideo(boolean)),
+    saveQuote: (quote) => dispatch(saveQuote(quote))
   }
 }
 

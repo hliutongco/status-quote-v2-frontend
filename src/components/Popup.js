@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {changeGameStatus, changeVideoStatus} from '../actions'
+import {changeGameStatus, changeVideoStatus, updateScore} from '../actions'
 
 
 class Popup extends React.Component {
@@ -23,6 +23,7 @@ class Popup extends React.Component {
   }
 
   componentWillUnmount() {
+    this.props.transcript.includes(this.props.quote) &&  this.props.updateScore(this.props.score + 1)
     this.props.stopListening()
     this.props.changeVideoStatus(true)
     clearInterval(this.interval);
@@ -33,7 +34,8 @@ class Popup extends React.Component {
       <div className='popup'>
         <h1>Guess the line</h1>
         <h2>Time left: {this.state.time}</h2>
-        <button className='start-btn' onClick={this.props.resetTranscript}>Re-Record</button>
+        <p><button className='start-btn' onClick={this.props.resetTranscript}>Re-Record</button></p>
+        <p><button className='start-btn' onClick={() => this.props.handlePause(null)}>Submit</button></p>
         <h3>{this.props.transcript}</h3>
       </div>
     )
@@ -42,14 +44,17 @@ class Popup extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    video: state.video
+    video: state.video,
+    score: state.score,
+    quote: state.quote
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handlePause: (status) => dispatch(changeGameStatus(status)),
-    changeVideoStatus: (boolean) => dispatch(changeVideoStatus(boolean))
+    changeVideoStatus: (boolean) => dispatch(changeVideoStatus(boolean)),
+    updateScore: (score) => dispatch(updateScore(score))
   }
 }
 

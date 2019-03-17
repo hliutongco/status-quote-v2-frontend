@@ -18,7 +18,7 @@ class MainMenu extends Component {
     return (
       <div className="menu-background">
         <div className="menu-text">
-          <h2>Status Quote</h2>
+          <h1>Status Quote</h1>
           <p>Say the word START to begin the game!</p>
           <button onClick={() => this.props.handleChange("INSTRUCTIONS")} className='start-btn'>Instructions</button>
         </div>

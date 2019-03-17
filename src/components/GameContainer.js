@@ -5,7 +5,7 @@ import EndGame from './EndGame'
 import Popup from './Popup';
 import {clips} from '../clips'
 import {connect} from 'react-redux'
-import {changeNextVideo} from '../actions.js'
+import {changeNextVideo, changeGameStatus} from '../actions.js'
 
 class GameContainer extends Component {
   state = {
@@ -16,12 +16,13 @@ class GameContainer extends Component {
   displayWhichComponent = () => {
     switch(this.props.gameStatus){
       case "PAUSED":
-        return <Popup transcript={this.props.transcript}
+        return <Popup
+        transcript={this.props.transcript}
         startListening={this.props.startListening}
         resetTranscript={this.props.resetTranscript}
         stopListening={this.props.stopListening}/>
       case "ENDED":
-        return <EndGame/>
+        return <EndGame />
       default:
         return <Scores />
     }
@@ -48,7 +49,11 @@ class GameContainer extends Component {
   useGenerator = () => {
     // Create the generator function then call .next()
     // and save the returned object into state
-    this.setState({ generatedObj: this.createVideoGenerator().next() })
+    this.setState({ generatedObj: this.createVideoGenerator().next() }, () => {
+      if(!this.state.generatedObj.value){
+        this.props.handleChange("ENDED")
+      }
+    })
   }
 
   componentDidMount(){
@@ -83,7 +88,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeNextVideo: (boolean) => dispatch(changeNextVideo(boolean))
+    changeNextVideo: (boolean) => dispatch(changeNextVideo(boolean)),
+    handleChange: (display) => dispatch(changeGameStatus(display))
   }
 }
 

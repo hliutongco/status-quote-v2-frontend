@@ -1,24 +1,28 @@
 import React from 'react'
-// import cageNic from '../cageNic.png'
+import {changeDisplay} from '../actions'
 import {connect} from 'react-redux'
 
 const EndGame = (props) => {
   return (
-    <div id="player-selection">
-      <div id="end-game">
-      </div>
+    <div id="end-game">
+      <p>Game Over!</p>
+      <p>Final Score:</p>
+      <p>{props.score}</p>
+      <button onClick={() => props.handleChange(null)} className='start-btn'>Main Menu</button>
     </div>
   )
 }
-// <h1>{props.player1 === props.player2 && "It's a tie!" || props.player1 > props.player2 && "Player One Wins!" || "Player Two Wins!" }</h1>
-// <iframe src="https://giphy.com/embed/3ohhwMfw0rU0LQfFeg" width="480" height="480" frameBorder="0" allowFullScreen></iframe>
-// <iframe src="https://giphy.com/embed/MUlt1JtQrTZXSfeZYN" width="480" height="480" frameBorder="0" allowFullScreen></iframe>
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state) => {
   return {
-    player1: store.player1,
-    player2: store.player2
+    score: state.score
   }
 }
 
-export default connect(mapStateToProps)(EndGame);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleChange: (display) => dispatch(changeDisplay(display))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EndGame);

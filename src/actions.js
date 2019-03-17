@@ -26,19 +26,16 @@ export const changeNextVideo = (boolean) => {
     }
   }
 
-export const sendVideo = (video) => {
+export const saveQuote = (quote) => {
   return {
-    type: 'SEND_VIDEO',
-    payload: video
+    type: 'SAVE_QUOTE',
+    payload: quote
   }
 }
 
-export const updatePlayer1 = {
-  type: 'UPDATE_PLAYER1',
-  payload: 1
-}
-
-export const updatePlayer2 = {
-  type: 'UPDATE_PLAYER2',
-  payload: 1
+export const updateScore = (score) => {
+  return {
+    type: 'UPDATE_SCORE',
+    payload: score
+  }
 }
