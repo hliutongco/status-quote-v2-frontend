@@ -1,16 +1,23 @@
-import React from 'react'
-import {changeDisplay} from '../actions'
+import React, {Component} from 'react'
+import {changeDisplay, changeGameStatus, updateScore} from '../actions'
 import {connect} from 'react-redux'
 
-const EndGame = (props) => {
-  return (
-    <div id="end-game">
-      <h1>Game Over!</h1>
-      <h2>Final Score:</h2>
-      <h2>{props.score}</h2>
-      <button onClick={() => props.handleChange(null)} className='start-btn'>Main Menu</button>
-    </div>
-  )
+class EndGame extends Component {
+  componentWillUnmount(){
+      this.props.handleRestart(null)
+      this.props.updateScore(0)
+  }
+
+  render(){
+    return (
+      <div id="end-game">
+        <h1>Game Over!</h1>
+        <h2>Final Score:</h2>
+        <h2>{this.props.score}</h2>
+        <button onClick={() => this.props.handleChange(null)} className='start-btn'>Main Menu</button>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -21,7 +28,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleChange: (display) => dispatch(changeDisplay(display))
+    handleChange: (display) => dispatch(changeDisplay(display)),
+    handleRestart: (display) => dispatch(changeGameStatus(display)),
+    updateScore: (score) => dispatch(updateScore(score))
   }
 }
 
