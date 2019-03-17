@@ -3,12 +3,9 @@ import {connect} from 'react-redux'
 
 class Scores extends React.Component {
 
-  render () {
+  render() {
     return (
-      <div className="player-container">
-        <h2>Score</h2>
-        <h2>{this.props.score}</h2>
-      </div>
+      <h2 id="score-text">Score: {this.props.score}</h2>
     )
   }
 }

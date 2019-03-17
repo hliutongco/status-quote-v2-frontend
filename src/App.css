@@ -1,78 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Titillium+Web');
+
 body {
-  font-family: 'Press Start 2P', cursive;
   color: white;
+  font-family: 'Titillium Web', sans-serif;
   background-color: black;
+  font-size: 2vw;
+  overflow: hidden;
 }
 
-.menu-text {
-  background-color: rgba(55,55,55,0.9);
-  width: 75%;
-  margin: auto;
-  padding: 15px 10px 40px 10px;
-  margin-top: 15%;
+button {
+  font-family: 'Titillium Web', sans-serif;
+  padding: 1.5vh 1.5vw;
+  background: #92CD41;
   text-align: center;
+  font-size: 1.5vw;
+  width: calc(10vw + 1);
+  color: white;
+  outline: none;
 }
 
-#end-game {
-  text-align: center;
-  width: 100%;
-  margin-top: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 50px;
+button:hover{
+  color: #92CD41;
+  background: white;
 }
 
 h1 {
-  font-size: 3vw;
+  font-family: 'Pacifico', cursive;
+  font-size: 5vw;
+  margin: 0;
 }
 
 h2 {
-  font-size: 2vw;
+  font-size: 3vw;
+  margin: 0;
 }
 
 video {
   z-index: -1;
-  width: 80vw;
-  height: 50vh;
-}
-
-.popup{
-  z-index: 1;
-  margin-top: 10%;
-  text-align: center;
-  width: 100%;
   position: fixed;
+  right: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
 }
-
-.player-container {
-  position: fixed;
-  top: 0; right: 5vw;
-  font-size: 2vw;
-  text-align: center;
-}
-
-.select-box {
-  font-family: 'Press Start 2P', cursive;
-  background: #92CD41;
-  display: inline-block;
-  position: relative;
-  text-align: center;
-  font-size: 20px;
-  padding: 20px;
-  font-family: 'Press Start 2P', cursive;
-  text-decoration: none;
-  color: white;
-  box-shadow: inset (-4px) (-4px) 0px 0px #4AA52E;
-}
-
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  padding: 0 10vw;
+  text-align: left;
 }
-
 
 .menu-background{
   width: 100%;
@@ -87,45 +62,54 @@ ul {
   background-size: cover;
 }
 
-.start-btn:hover{
-  color: #92CD41;
-  background: white;
-  transition: .5s;
-  cursor: pointer;
-}
-.hintmatch {
-  position: absolute;
-  color: white;
-  z-index: 99999;
+.menu-text {
+  background-color: rgba(55,55,55,0.9);
+  margin: auto;
+  padding: 15px 10px 40px 10px;
+  margin-top: 20vh;
+  text-align: center;
 }
 
-.start-btn {
-    padding: 10px;
-    border-radius: 0px;
-    background: #92CD41;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    font-size: 20px;
-    width: 280px;
-    padding: 0px;
-    font-family: 'Press Start 2P', cursive;
-    text-decoration: none;
-    color: white;
-  }
-  .hint-btn {
-    z-index: 9999;
-    position: absolute;
-    padding: 10px;
-    border-radius: 0px;
-    background: #92CD41;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    font-size: 20px;
-    width: 280px;
-    padding: 0px;
-    font-family: 'Press Start 2P', cursive;
-    text-decoration: none;
-    color: white;
-  }
+#end-game {
+  text-align: center;
+  width: 100vw;
+  margin-top: 20vh;
+}
+
+#countdown {
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+}
+
+
+#popup{
+  background-color: rgb(0, 0, 0, 0.8);
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 20vh;
+  position: fixed;
+  top: 0; left: 0;
+}
+
+#score-text {
+  position: fixed;
+  top: 0; right: 5vw;
+  font-size: 3vw;
+}
+
+#hint-text {
+  position: fixed;
+  bottom: 10vh; left: 1vw;
+  font-size: 3vw;
+  color: white;
+  z-index: 1;
+}
+
+#hint-btn {
+  position: fixed;
+  bottom: 2vh; left: 1vw;
+}

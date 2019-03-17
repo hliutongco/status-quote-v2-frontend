@@ -5,6 +5,7 @@ import {changeGameStatus, changeVideoStatus, updateScore} from '../actions'
 
 class Popup extends React.Component {
   state = {
+    hintClicked: false,
     time: 10
   }
 
@@ -23,20 +24,36 @@ class Popup extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.transcript.includes(this.props.quote) &&  this.props.updateScore(this.props.score + 1)
+    const correctAnswer = this.props.transcript.includes(this.props.clip.quote)
+
+    if(correctAnswer && !this.state.hintClicked){
+      this.props.updateScore(this.props.score + 2)
+    }
+    else if(correctAnswer && this.state.hintClicked){
+      this.props.updateScore(this.props.score + 1)
+    }
+
     this.props.stopListening()
     this.props.changeVideoStatus(true)
     clearInterval(this.interval);
   }
 
+  hintyClicked = () => {
+    this.setState({
+      hintClicked: true
+    })
+  }
+
   render () {
     return (
-      <div className='popup'>
+      <div id='popup'>
         <h1>Guess the line</h1>
         <h2>Time left: {this.state.time}</h2>
-        <p><button className='start-btn' onClick={this.props.resetTranscript}>Re-Record</button></p>
-        <p><button className='start-btn' onClick={() => this.props.handlePause(null)}>Submit</button></p>
+        <p><button onClick={this.props.resetTranscript}>Re-Record</button></p>
+        <p><button onClick={() => this.props.handlePause(null)}>Submit</button></p>
         <h3>{this.props.transcript}</h3>
+        {this.state.hintClicked ? <h2 id='hint-text'>{this.props.clip.hint}</h2> : ""}
+        <button onClick={this.hintyClicked} id='hint-btn'>Give Me A Hint</button>
       </div>
     )
   }
@@ -46,7 +63,7 @@ const mapStateToProps = (state) => {
   return {
     video: state.video,
     score: state.score,
-    quote: state.quote
+    clip: state.clip
   }
 }
 

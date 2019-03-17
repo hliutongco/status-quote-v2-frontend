@@ -26,10 +26,10 @@ export const changeNextVideo = (boolean) => {
     }
   }
 
-export const saveQuote = (quote) => {
+export const saveClip = (clip) => {
   return {
-    type: 'SAVE_QUOTE',
-    payload: quote
+    type: 'SAVE_CLIP',
+    payload: clip
   }
 }
 

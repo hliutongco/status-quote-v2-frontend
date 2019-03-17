@@ -1,6 +1,6 @@
 const initialState = {
   displayedComponent: null,
-  quote: null,
+  clip: null,
   score: 0,
   gameStatus: null,
   videoStatus: false,
@@ -17,8 +17,8 @@ export const reducer = (state = initialState, action) => {
       return {...state, videoStatus: action.payload}
     case 'CHANGE_NEXT_VIDEO':
       return {...state, nextVideo: action.payload}
-    case 'SAVE_QUOTE':
-      return {...state, quote: action.payload}
+    case 'SAVE_CLIP':
+      return {...state, clip: action.payload}
     case 'UPDATE_SCORE':
       return {...state, score: action.payload}
     default:

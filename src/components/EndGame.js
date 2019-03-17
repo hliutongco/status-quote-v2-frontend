@@ -5,9 +5,9 @@ import {connect} from 'react-redux'
 const EndGame = (props) => {
   return (
     <div id="end-game">
-      <p>Game Over!</p>
-      <p>Final Score:</p>
-      <p>{props.score}</p>
+      <h1>Game Over!</h1>
+      <h2>Final Score:</h2>
+      <h2>{props.score}</h2>
       <button onClick={() => props.handleChange(null)} className='start-btn'>Main Menu</button>
     </div>
   )

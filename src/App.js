@@ -4,16 +4,7 @@ import GameContainer from './components/GameContainer'
 import MainMenu from './components/MainMenu'
 import Instructions from './components/Instructions'
 import SpeechRecognition from 'react-speech-recognition'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
-const propTypes = {
-  // Props injected by SpeechRecognition
-  transcript: PropTypes.string,
-  startListening: PropTypes.func,
-  stopListening: PropTypes.func,
-  resetTranscript: PropTypes.func
-}
 
 class App extends Component {
 

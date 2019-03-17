@@ -20,7 +20,7 @@ export const clips = [
     title: 'A Few Good Men',
     link: 'https://drive.google.com/uc?id=11_00hlcxRkB_wcgfvJ1rN50noaHN7YIN',
     quote: 'you can\'t handle the truth',
-    hint: 'truth',
+    hint: 'can\'t handle',
     time: 5000
   },
   {
