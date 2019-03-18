@@ -1,6 +1,6 @@
 # Status Quote
 
-![status quote](./example.png)
+![status quote](./public/example.png)
 
 Status Quote is a one-player game where you guess famous movie lines.
 
