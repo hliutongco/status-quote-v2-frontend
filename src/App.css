@@ -55,7 +55,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  background: url("https://secure.static.tumblr.com/81443e29eed91e143169e9e6b75fe7f3/rao1mez/39dmss2gi/tumblr_static_old-skool-3d-cinema-audience_color.jpg") no-repeat center center fixed;
+  background: url("https://s3.us-east-2.amazonaws.com/misc-helen/cinema-bg.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
