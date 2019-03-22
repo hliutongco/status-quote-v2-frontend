@@ -17,6 +17,7 @@ button {
   width: calc(10vw + 1);
   color: white;
   outline: none;
+  margin-left: 2vw;
 }
 
 button:hover{
@@ -47,6 +48,40 @@ video {
 ul {
   padding: 0 10vw;
   text-align: left;
+}
+
+#score-table {
+  height: 40vh;
+  width: 50vw;
+  margin: 2vh auto;
+  overflow-y: scroll;
+  border: 1px dashed white;
+}
+
+#score-table::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 1vw;
+}
+
+#score-table::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: white;
+}
+
+
+table {
+  font-size: 1.5vw;
+  margin: 3vh auto;
+  text-align: left;
+}
+
+td {
+  padding-right: 4vw;
+}
+
+th {
+  font-size: 2vw;
+  text-decoration: underline;
 }
 
 .menu-background{

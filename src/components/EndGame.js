@@ -1,26 +1,54 @@
 import React, {Fragment, useState, useEffect} from 'react'
-import {changeDisplay, changeGameStatus, updateScore} from '../actions'
+import {updateScore} from '../actions'
 import {connect} from 'react-redux'
-
+import HighScores from './HighScores'
 
 const EndGame = (props) => {
-  useEffect(() => {
-    return () => {
-       props.handleRestart(null)
-       props.updateScore(0)
-   }
-  })
+
+  const [ submitted, toggleSubmit ] = useState(false);
+
+  useEffect(() => props.startListening(), [])
+
+  const handleSubmit = () => {
+    if(!props.transcript) return
+
+    fetch('http://localhost:3000/scores', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: props.transcript,
+        score: props.score
+      })
+    }).then(() => {
+      props.resetTranscript()
+      props.stopListening()
+      props.updateScore(0)
+      toggleSubmit(true)
+    })
+  }
+
+  const renderGameOver = () => {
+    return (
+      <Fragment>
+        <h1>Game Over!</h1>
+        <h2>Final Score:</h2>
+        <h2>{props.score}</h2>
+        <p>Say Your Name:</p>
+        <p>{props.transcript}</p>
+        <button onClick={() => props.resetTranscript()} className='start-btn'>Re-Record</button>
+        <button onClick={handleSubmit} className='start-btn'>Submit</button>
+      </Fragment>
+    )
+  }
 
   return (
     <div id="end-game">
-      <h1>Game Over!</h1>
-      <h2>Final Score:</h2>
-      <h2>{props.score}</h2>
-      <button onClick={() => props.handleChange(null)} className='start-btn'>Main Menu</button>
+      { submitted ? <HighScores/> : renderGameOver() }
     </div>
   )
 }
-
 
 const mapStateToProps = (state) => {
   return {
@@ -30,8 +58,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleChange: (display) => dispatch(changeDisplay(display)),
-    handleRestart: (display) => dispatch(changeGameStatus(display)),
     updateScore: (score) => dispatch(updateScore(score))
   }
 }

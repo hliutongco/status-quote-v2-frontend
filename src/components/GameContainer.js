@@ -22,7 +22,10 @@ class GameContainer extends Component {
         resetTranscript={this.props.resetTranscript}
         stopListening={this.props.stopListening}/>
       case "ENDED":
-        return <EndGame />
+        return <EndGame transcript={this.props.transcript}
+        startListening={this.props.startListening}
+        resetTranscript={this.props.resetTranscript}
+        stopListening={this.props.stopListening}/>
       default:
         return <Scores />
     }
