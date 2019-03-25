@@ -9,7 +9,7 @@ const EndGame = (props) => {
 
   useEffect(() => props.startListening(), [])
 
-  const handleSubmit = () => {
+  const handleSubmit = (username) => {
     if(!props.transcript) return
 
     fetch('http://localhost:3000/scores', {
@@ -18,7 +18,7 @@ const EndGame = (props) => {
         'content-type': 'application/json'
       },
       body: JSON.stringify({
-        username: props.transcript,
+        username: username,
         score: props.score
       })
     }).then(() => {
@@ -30,15 +30,16 @@ const EndGame = (props) => {
   }
 
   const renderGameOver = () => {
+    const username = props.transcript.length > 15 ? props.transcript.substring(0,15) + '...' : props.transcript
     return (
       <Fragment>
         <h1>Game Over!</h1>
         <h2>Final Score:</h2>
         <h2>{props.score}</h2>
         <p>Say Your Name:</p>
-        <p>{props.transcript}</p>
+        <p>{username}</p>
         <button onClick={() => props.resetTranscript()} className='start-btn'>Re-Record</button>
-        <button onClick={handleSubmit} className='start-btn'>Submit</button>
+        <button onClick={() => handleSubmit(username)} className='start-btn'>Submit</button>
       </Fragment>
     )
   }

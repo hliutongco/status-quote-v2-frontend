@@ -6,7 +6,6 @@ const HighScores = (props) => {
   const [scores, getScores] = useState([]);
 
   useEffect(() => {
-    console.log("in useEffect");
     fetch('http://localhost:3000/scores')
     .then(res => res.json())
     .then(data => getScores(data))

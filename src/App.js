@@ -10,7 +10,6 @@ class App extends Component {
 
   componentDidMount(){
     navigator.mediaDevices.getUserMedia({audio: true})
-    
   }
 
   displayWhichComponent(){
