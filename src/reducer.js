@@ -1,4 +1,8 @@
 const initialState = {
+  startListening: null,
+  stopListening: null,
+  resetTranscript: null,
+  transcript: null,
   displayedComponent: null,
   clip: null,
   score: 0,
@@ -9,8 +13,14 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch(action.type){
-    case 'CHANGE_DISPLAY':
-      return {...state, displayedComponent: action.payload}
+    case 'SAVE_START_LISTENING':
+      return {...state, startListening: action.payload}
+    case 'SAVE_STOP_LISTENING':
+      return {...state, stopListening: action.payload}
+    case 'SAVE_RESET_TRANSCRIPT':
+      return {...state, resetTranscript: action.payload}
+    case 'SAVE_TRANSCRIPT':
+      return {...state, transcript: action.payload}
     case 'CHANGE_GAME_STATUS':
       return {...state, gameStatus: action.payload}
     case 'CHANGE_VIDEO_STATUS':

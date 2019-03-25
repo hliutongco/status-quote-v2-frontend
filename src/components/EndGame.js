@@ -7,7 +7,10 @@ const EndGame = (props) => {
 
   const [ submitted, toggleSubmit ] = useState(false);
 
-  useEffect(() => props.startListening(), [])
+  useEffect(() => {
+    props.resetTranscript()
+    props.startListening()
+  }, [])
 
   const handleSubmit = (username) => {
     if(!props.transcript) return

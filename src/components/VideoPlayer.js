@@ -5,8 +5,7 @@ import {changeGameStatus, changeVideoStatus, changeNextVideo, saveClip} from '..
 class VideoPlayer extends Component {
 
   state = {
-    index: 0,
-    clickedVideo: null,
+    showAnswers: false,
     showCountdown: false
   }
 
@@ -28,8 +27,17 @@ class VideoPlayer extends Component {
   componentDidUpdate(){
     if(this.props.continueVideo){
       this.props.changeVideoStatus(false)
-      this.video.play()
+      this.setState({showAnswers: true}, () => this.video.play())
     }
+  }
+
+  renderAnswers = () => {
+    return (
+      <div id="show-answers">
+        <p>Answer: {this.props.transcript}</p>
+        <p>Your Answer: {this.props.clip.quote}</p>
+      </div>
+    )
   }
 
   render() {
@@ -44,6 +52,7 @@ class VideoPlayer extends Component {
         Sorry, your browser doesn't support embedded videos.
         </video>
         <h2>{this.props.clip.title}</h2>
+        {this.state.showAnswers ? this.renderAnswers() : null}
       </Fragment>
     );
   }

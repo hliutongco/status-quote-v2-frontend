@@ -1,3 +1,31 @@
+export const saveStartListening = (func) => {
+  return {
+      type: 'CHANGE_START_LISTENING',
+      payload: func
+    }
+  }
+
+export const saveStopListening = (func) => {
+  return {
+      type: 'CHANGE_STOP_LISTENING',
+      payload: func
+    }
+  }
+
+export const saveResetTranscript = (func) => {
+  return {
+      type: 'SAVE_RESET_TRANSCRIPT',
+      payload: func
+    }
+  }
+
+export const saveTranscript = (transcript) => {
+  return {
+      type: 'SAVE_TRANSCRIPT',
+      payload: transcript
+    }
+  }
+
 export const changeDisplay = (display) => {
   return {
       type: 'CHANGE_DISPLAY',

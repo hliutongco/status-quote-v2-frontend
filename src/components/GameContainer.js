@@ -32,7 +32,7 @@ class GameContainer extends Component {
   }
 
   createVideoGenerator = () => {
-    const videoPlayers = clips.map((clip) => <VideoPlayer key={clip.id} clip={clip}/>)
+    const videoPlayers = clips.map((clip) => <VideoPlayer key={clip.id} transcript={this.props.transcript} clip={clip}/>)
 
     // continue to the next video player in the array
     // using a generator function
@@ -85,7 +85,10 @@ class GameContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     gameStatus: state.gameStatus,
-    nextVideo: state.nextVideo
+    nextVideo: state.nextVideo,
+    startListening: state.startListening,
+    stopListening: state.stopListening,
+    resetTranscript: state.resetTranscript
   }
 }
 
