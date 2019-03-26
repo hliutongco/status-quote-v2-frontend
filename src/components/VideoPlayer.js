@@ -34,8 +34,10 @@ class VideoPlayer extends Component {
   renderAnswers = () => {
     return (
       <div id="show-answers">
-        <p>Answer: {this.props.transcript}</p>
-        <p>Your Answer: {this.props.clip.quote}</p>
+        <h2>Answer:</h2>
+        <p>{this.props.clip.quote}</p>
+        <h2>Your Guess:</h2>
+        <p>{this.props.transcript}</p>
       </div>
     )
   }
@@ -60,7 +62,8 @@ class VideoPlayer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    continueVideo: state.videoStatus
+    continueVideo: state.videoStatus,
+    transcript: state.transcript
   }
 }
 

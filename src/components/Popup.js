@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {changeGameStatus, changeVideoStatus, updateScore} from '../actions'
+import {changeGameStatus, changeVideoStatus, updateScore, saveTranscript} from '../actions'
 
 
 class Popup extends React.Component {
@@ -33,6 +33,7 @@ class Popup extends React.Component {
       this.props.updateScore(this.props.score + 1)
     }
 
+    this.props.saveTranscript(this.props.transcript)
     this.props.stopListening()
     this.props.changeVideoStatus(true)
     clearInterval(this.interval);
@@ -63,12 +64,16 @@ const mapStateToProps = (state) => {
   return {
     video: state.video,
     score: state.score,
-    clip: state.clip
+    clip: state.clip,
+    startListening: state.startListening,
+    stopListening: state.stopListening,
+    resetTranscript: state.resetTranscript
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    saveTranscript: (transcript) => dispatch(saveTranscript(transcript)),
     handlePause: (status) => dispatch(changeGameStatus(status)),
     changeVideoStatus: (boolean) => dispatch(changeVideoStatus(boolean)),
     updateScore: (score) => dispatch(updateScore(score))

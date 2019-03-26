@@ -30,7 +30,12 @@ class MainMenu extends Component {
     this.props.stopListening()
   }
 }
-// <button onClick={props.handleChange} className='start-btn'>Start Game</button>
+
+const mapStateToProps = (state) => {
+  return {
+    stopListening: state.stopListening
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -38,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(MainMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(MainMenu)

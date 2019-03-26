@@ -21,6 +21,8 @@ export const reducer = (state = initialState, action) => {
       return {...state, resetTranscript: action.payload}
     case 'SAVE_TRANSCRIPT':
       return {...state, transcript: action.payload}
+    case 'CHANGE_DISPLAY':
+      return {...state, displayedComponent: action.payload}
     case 'CHANGE_GAME_STATUS':
       return {...state, gameStatus: action.payload}
     case 'CHANGE_VIDEO_STATUS':

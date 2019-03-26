@@ -3,17 +3,17 @@ import './App.css';
 import GameContainer from './components/GameContainer'
 import MainMenu from './components/MainMenu'
 import Instructions from './components/Instructions'
-import SpeechRecognition from 'react-speech-recognition'
 import {connect} from 'react-redux'
+import SpeechRecognition from 'react-speech-recognition'
 import {saveStartListening, saveStopListening, saveResetTranscript, saveTranscript} from './actions'
 
 class App extends Component {
 
   componentDidMount(){
     navigator.mediaDevices.getUserMedia({audio: true})
+    this.props.saveResetTranscript(this.props.resetTranscript)
     this.props.saveStartListening(this.props.startListening)
     this.props.saveStopListening(this.props.stopListening)
-    this.props.saveResetTranscript(this.props.resetTranscript)
     this.props.saveTranscript(this.props.transcript)
   }
 
@@ -24,10 +24,7 @@ class App extends Component {
       case 'INSTRUCTIONS':
         return <Instructions/>
       default:
-        return <MainMenu transcript={this.props.transcript}
-        startListening={this.props.startListening}
-        resetTranscript={this.props.resetTranscript}
-        stopListening={this.props.stopListening}/>
+        return <MainMenu resetTranscript={this.props.resetTranscript} startListening={this.props.startListening} transcript={this.props.transcript}/>
     }
   }
 

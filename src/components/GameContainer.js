@@ -16,23 +16,16 @@ class GameContainer extends Component {
   displayWhichComponent = () => {
     switch(this.props.gameStatus){
       case "PAUSED":
-        return <Popup
-        transcript={this.props.transcript}
-        startListening={this.props.startListening}
-        resetTranscript={this.props.resetTranscript}
-        stopListening={this.props.stopListening}/>
+        return <Popup transcript={this.props.transcript}/>
       case "ENDED":
-        return <EndGame transcript={this.props.transcript}
-        startListening={this.props.startListening}
-        resetTranscript={this.props.resetTranscript}
-        stopListening={this.props.stopListening}/>
+        return <EndGame transcript={this.props.transcript}/>
       default:
         return <Scores />
     }
   }
 
   createVideoGenerator = () => {
-    const videoPlayers = clips.map((clip) => <VideoPlayer key={clip.id} transcript={this.props.transcript} clip={clip}/>)
+    const videoPlayers = clips.map((clip) => <VideoPlayer key={clip.id} clip={clip}/>)
 
     // continue to the next video player in the array
     // using a generator function

@@ -1,13 +1,13 @@
 export const saveStartListening = (func) => {
   return {
-      type: 'CHANGE_START_LISTENING',
+      type: 'SAVE_START_LISTENING',
       payload: func
     }
   }
 
 export const saveStopListening = (func) => {
   return {
-      type: 'CHANGE_STOP_LISTENING',
+      type: 'SAVE_STOP_LISTENING',
       payload: func
     }
   }
