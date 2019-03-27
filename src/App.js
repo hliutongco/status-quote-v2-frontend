@@ -5,7 +5,7 @@ import MainMenu from './components/MainMenu'
 import Instructions from './components/Instructions'
 import {connect} from 'react-redux'
 import SpeechRecognition from 'react-speech-recognition'
-import {saveStartListening, saveStopListening, saveResetTranscript, saveTranscript} from './actions'
+import {saveStartListening, saveStopListening, saveResetTranscript} from './actions'
 
 class App extends Component {
 
@@ -14,7 +14,6 @@ class App extends Component {
     this.props.saveResetTranscript(this.props.resetTranscript)
     this.props.saveStartListening(this.props.startListening)
     this.props.saveStopListening(this.props.stopListening)
-    this.props.saveTranscript(this.props.transcript)
   }
 
   displayWhichComponent(){
@@ -51,8 +50,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveStartListening: (func) => dispatch(saveStartListening(func)),
     saveStopListening: (func) => dispatch(saveStopListening(func)),
-    saveResetTranscript: (func) => dispatch(saveResetTranscript(func)),
-    saveTranscript: (transcript) => dispatch(saveTranscript(transcript))
+    saveResetTranscript: (func) => dispatch(saveResetTranscript(func))
   }
 }
 
