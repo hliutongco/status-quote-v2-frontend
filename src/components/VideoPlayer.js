@@ -34,9 +34,9 @@ class VideoPlayer extends Component {
   renderAnswers = () => {
     return (
       <div id="show-answers">
-        <h2>Answer:</h2>
+        <h1>Answer</h1>
         <p>{this.props.clip.quote}</p>
-        <h2>Your Guess:</h2>
+        <h1>Your Guess</h1>
         <p>{this.props.transcript}</p>
       </div>
     )

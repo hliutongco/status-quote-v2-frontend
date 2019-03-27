@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Fragment,Component} from 'react'
 import VideoPlayer from '../components/VideoPlayer'
 import Scores from '../components/Scores'
 import EndGame from './EndGame'
@@ -65,12 +65,12 @@ class GameContainer extends Component {
 
   render(){
     return (
-      <div id="game-container">
-        {this.displayWhichComponent()}
-        <div id="game-container">
+      <Fragment>
+        <div id="black-bar-top"></div>
+          {this.displayWhichComponent()}
           {this.state.generatedObj.value}
-        </div>
-      </div>
+        <div id="black-bar-bottom"></div>
+      </Fragment>
     )
   }
 }

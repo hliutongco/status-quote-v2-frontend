@@ -21,7 +21,7 @@ export const clips = [
     link: 'http://localhost:3000/clip3',
     quote: 'where we\'re going we don\'t need roads',
     hint: 'don\'t need roads',
-    time: 9000
+    time: 10000
   },
   {
     id: 4,

@@ -24,7 +24,7 @@ class Popup extends React.Component {
   }
 
   componentWillUnmount() {
-    const correctAnswer = this.props.transcript.includes(this.props.clip.quote)
+    const correctAnswer = this.props.transcript.toLowerCase().includes(this.props.clip.quote)
 
     if(correctAnswer && !this.state.hintClicked){
       this.props.updateScore(this.props.score + 2)
@@ -52,7 +52,7 @@ class Popup extends React.Component {
         <h2>Time left: {this.state.time}</h2>
         <p><button onClick={this.props.resetTranscript}>Re-Record</button></p>
         <p><button onClick={() => this.props.handlePause(null)}>Submit</button></p>
-        <h3>{this.props.transcript}</h3>
+        <h3 id="popup-transcript">{this.props.transcript}</h3>
         {this.state.hintClicked ? <h2 id='hint-text'>{this.props.clip.hint}</h2> : ""}
         <button onClick={this.hintyClicked} id='hint-btn'>Give Me A Hint</button>
       </div>
