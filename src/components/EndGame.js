@@ -15,7 +15,7 @@ const EndGame = (props) => {
   const handleSubmit = (username) => {
     if(!props.transcript) return
 
-    fetch('http://localhost:3000/scores', {
+    fetch('https://status-quote-backend.herokuapp.com/scores', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

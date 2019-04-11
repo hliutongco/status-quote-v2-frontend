@@ -9,7 +9,7 @@ class MainMenu extends Component {
   }
 
   componentDidUpdate(){
-    if(this.props.transcript.includes("start")){
+    if(this.props.transcript.toLowerCase().includes("start")){
       this.props.handleChange("START_GAME");
     }
   }

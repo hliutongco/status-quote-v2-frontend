@@ -6,7 +6,7 @@ const HighScores = (props) => {
   const [scores, getScores] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/scores')
+    fetch('https://status-quote-backend.herokuapp.com/scores')
     .then(res => res.json())
     .then(data => getScores(data))
   }, [])
