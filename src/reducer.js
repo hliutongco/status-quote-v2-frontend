@@ -3,7 +3,7 @@ const initialState = {
   stopListening: null,
   resetTranscript: null,
   transcript: null,
-  displayedComponent: null,
+  displayedComponent: "LOADING",
   clip: null,
   score: 0,
   gameStatus: null,
